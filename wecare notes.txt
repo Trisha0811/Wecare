@@ -1,0 +1,117 @@
+//http://localhost:8081/wecare/users =>post data =.create user
+//http://localhost:8081/wecare/users/login =>post = login with id ,psw
+//http://localhost:8081/wecare/users/{id} =>get=view profile
+insert data of user
+//
+
+   {
+    
+    "name":"yyyyy",
+    "gender":"female",
+    "mobileNumber":1234567897,
+    "password":4264,
+    "pincode":700138,
+    "city":"Budge Budge",
+    "country":"India"
+   }
+
+//login
+
+{
+    
+   "userId":"5f7d371b-2a5e-4984-a4b6-e84cff9e673b",
+    
+    "password":4264
+ 
+   }
+
+
+//
+D:\INFOSYS\AngularApp
+
+ng serve --port 4400
+
+
+//////////////////
+
+<p>in user home</p>
+
+<div class="row" *ngFor="let ch of coach">
+    <div class="column">
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+            <div *ngIf="ch.gender==='male'; else elseBlock">
+                <img class="card-img-top" src="../../assets/Images/male.png" alt="Card image cap">
+            </div>
+            <ng-template #elseBlock> <img class="card-img-top" src="../../assets/Images/female.png" alt="Card image cap"></ng-template>  
+                <div class="card-body">
+                   <h2 class="card-title">{{ch.name}}</h2>
+                   <h5>{{ch.coach_id}}</h5>
+                   <h5>{{ch.gender}}</h5>
+                  <p class="text">{{ch.speciality}}</p> 
+                  <br>
+                  <a href="#" class="btn btn-primary btn-lg">Book an appointment</a>
+                </div>
+              </div>
+        </div>
+</div>
+</div>
+
+
+
+//final user
+
+{"name":"RANAJIT DAS","password":"11111","email":"asd@gmail.com","mobileNumber":9748373114,"date_of_birth":"1999-05-09","gender":"M","pincode":712223,"city":"SHEORAPHULI","state":"BENGAL","country":"India"}
+
+//user end points
+//http://localhost:8080/users =>post data =.create user
+
+{"name":"RANAJIT DAS","password":"11111","email":"asd@gmail.com","mobileNumber":9748373114,"date_of_birth":"1999-05-09","gender":"M","pincode":712223,"city":"SHEORAPHULI","state":"BENGAL","country":"India"}
+
+
+//http://localhost:8080/users/login =>post = login with id ,psw {"userId":"","password":""}
+//http://localhost:8080/users/{id} =>get=view profile
+
+
+
+
+
+//coach
+{"name":"S. DAS","password":"11111","mobile_number":9748373114,"date_of_birth":"1999-05-09","gender":"M","speciality":"gynocologist"}
+
+
+//coach end points
+//http://localhost:8070/coaches =>post data =.create coach
+//http://localhost:8070/coaches/login =>post = login with id ,psw  {"coach_id": "LC111020211055102","password":"22222"}
+//http://localhost:8070/coaches/{id} =>get=view profile
+//http://localhost:8070/coaches/all =>get=view profile of all choches
+
+
+
+//booking
+1.
+http://localhost:8090/users/{userid}/booking/{coachid}
+http://localhost:8090/users/U111020211040102/booking/LC111020211055102  =>post-> create booking
+{"appointment_date":"2021-10-01","slot":"3PM-4PM"}
+
+same user , same coach => possible sets{ same date , different time slot ; diff date same time ; diff date diff time }
+                          not possible { same date same date }
+same date , sate solt with one coach by multi users not possible
+
+2.reschedule Appointment
+http://localhost:8090/booking/{booking id}  => patch
+http://localhost:8090/booking/1
+{"appointment_date":"2021-10-02","slot":"5PM-6PM"}
+
+3. delete appoinment
+http://localhost:8090/booking/{booking id} => delete
+http://localhost:8090/booking/1
+
+4. get all appoinments for a coach
+http://localhost:8090/booking/{coach id}   => get
+http://localhost:8090/booking/LC111020211055101
+
+5. get all appoinment by a user
+http://localhost:8090/users/booking/{user id}      => get
+http://localhost:8090/users/booking/U111020211040101
+
